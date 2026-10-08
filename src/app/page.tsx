@@ -1,4 +1,5 @@
 import Banner from "@/components/Banner";
+import PriceDicreaseToday from "@/components/PriceDicreaseToday";
 import PriceIncreseToday from "@/components/PriceIncreseToday";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <div className="bg-base-300">
       <Banner></Banner>
       <PriceIncreseToday></PriceIncreseToday>
+      <PriceDicreaseToday></PriceDicreaseToday>
     </div>
   );
 }

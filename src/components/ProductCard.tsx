@@ -17,7 +17,7 @@ const ProductCard = ({ product }: {product: IProduct}) => {
                 <p>আজকের দাম</p>
                 <p className="text-3xl font-bold">{product.today.toLocaleString("bn-BD")} <span className="text-xl font-semibold">টাকা</span></p>
             </div>
-            <p className="flex items-center gap-0.5 bg-base-300 px-2 py-1 rounded-xl text-red-500"><span><BiSolidUpArrow /></span> {product.change.pct.toLocaleString("bn-BD")}%</p>
+            <p className={`flex items-center gap-0.5 bg-base-300 px-2 py-1 rounded-xl ${product.change.dir === "up" ? "text-red-500" : "text-green-500"}`}><span><BiSolidUpArrow /></span> {product.change.pct.toLocaleString("bn-BD")}%</p>
         </div>
       </div>
     </div>
