@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 interface INavLinks {
     id: string;
     slug: string;
@@ -19,10 +21,10 @@ const NavLinks = async () => {
         <div className="flex gap-5 border-t border-t-gray-300 border-b border-b-gray-300 py-2">
             {
                 navLinks.map(navLink => 
-                <div className="flex gap-1" key={navLink.id}>
+                <Link href={`/category/${navLink.slug}`} className="flex gap-1" key={navLink.id}>
                     <span>{navLink.icon}</span>
                     <p>{navLink.nameBn}</p>
-                </div>
+                </Link>
                 )
             }
         </div>

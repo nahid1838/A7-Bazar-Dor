@@ -18,12 +18,12 @@ const Marquee = async () => {
                         key={product.id}>
                             <span>{product.categoryIcon}</span>
                             <p>{product.nameBn}</p>
-                            <p>{product.today} টাকা/কেজি</p>
+                            <p>{product.today.toLocaleString("bn-BD")} টাকা/কেজি</p>
                             <span>
                                 {product.change.dir === "up" ? 
-                                <span className="flex items-center text-red-500"><BiSolidUpArrow /> {product.change.pct}%</span>
+                                <span className="flex items-center text-red-500"><BiSolidUpArrow /> {product.change.pct.toLocaleString("bn-BD")}%</span>
                              : 
-                                <span className="flex items-center text-green-500"><BiSolidDownArrow /> {product.change.pct}%</span>
+                                <span className="flex items-center text-green-500"><BiSolidDownArrow /> {product.change.pct.toLocaleString("bn-BD")}%</span>
                             }</span>
                         </div>
                     )
