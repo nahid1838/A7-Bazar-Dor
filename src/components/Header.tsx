@@ -11,11 +11,11 @@ const Header = () => {
       <div className=" flex justify-between items-center py-4">
         <div className="flex gap-3">
           <div className="bg-green-600 p-2 rounded-xl">
-            <Image src={"/logo-icon.png"} alt="Logo" width={40} height={40} />
+            <Image src={"/logo-icon.png"} alt="Logo" width={35} height={35} />
           </div>
 
           <div>
-            <h4 className="text-3xl font-bold">বাজার দর</h4>
+            <h4 className="text-2xl font-bold">বাজার দর</h4>
             <p>{date}</p>
           </div>
         </div>

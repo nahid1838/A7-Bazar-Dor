@@ -11,7 +11,7 @@ const Banner = () => {
         <div className=" px-5 space-y-5">
           <div className="space-y-1">
             <p className="bg-green-100 px-3 py-1 rounded-xl w-fit">{date}</p>
-            <h1 className="text-4xl font-bold">আজকের বাজারের দাম এক নজরে</h1>
+            <h1 className="text-4xl font-extrabold">আজকের বাজারের দাম এক নজরে</h1>
           </div>
           <p className="max-w-[500px]">
             চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম — বাজারভিত্তিক
