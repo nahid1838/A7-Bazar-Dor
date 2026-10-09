@@ -21,8 +21,12 @@ const Header = () => {
           </div>
         </div>
         <div>
-            <button className="btn">সাইন ইন</button>
-            <button className="btn bg-green-600 text-white">সাইন আপ</button>
+            <Link href={"/signIn"}>
+              <button className="btn">সাইন ইন</button>
+            </Link>
+            <Link href={"/signUp"}>
+              <button className="btn bg-green-600 text-white">সাইন আপ</button>
+            </Link>
         </div>
       </div>
 
