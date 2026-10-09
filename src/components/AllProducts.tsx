@@ -6,7 +6,7 @@ const AllProducts = async () => {
     const allProducts = await getAllProducts();
 
     return (
-        <div id="goAll" className="container mx-auto space-y-4 pt-10">
+        <div id="goAll" className="container mx-auto space-y-4 pt-10 pb-25">
             <div>
                 <h3 className='flex items-center gap-1 text-3xl font-semibold'>সব পণ্য</h3>
                 <p>মোট {allProducts.length}টি পণ্য দেখানো হচ্ছে</p>
