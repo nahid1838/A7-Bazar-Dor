@@ -15,6 +15,12 @@ export interface IProduct {
     dir: string
     pct: number
   }
+  markets: Array<{
+    market: string
+    division: string
+    min: number
+    max: number
+  }>
 }
 
 

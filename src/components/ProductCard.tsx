@@ -1,9 +1,10 @@
 import { IProduct } from "@/lib/productData";
-import { BiSolidUpArrow } from "react-icons/bi";
+import Link from "next/link";
+import { BiSolidDownArrow, BiSolidUpArrow } from "react-icons/bi";
 
 const ProductCard = ({ product }: {product: IProduct}) => {
   return (
-    <div>
+    <Link href={`/product/${product.id}`} >
       <div className="space-y-3 border border-gray-300 bg-base-100 p-4 rounded-xl">
         <div className="flex gap-4 items-center">
             <span className="text-4xl bg-base-300 p-1 rounded-lg">{product.image}</span>
@@ -17,10 +18,10 @@ const ProductCard = ({ product }: {product: IProduct}) => {
                 <p>আজকের দাম</p>
                 <p className="text-3xl font-bold">{product.today.toLocaleString("bn-BD")} <span className="text-xl font-semibold">টাকা</span></p>
             </div>
-            <p className={`flex items-center gap-0.5 bg-base-300 px-2 py-1 rounded-xl ${product.change.dir === "up" ? "text-red-500" : "text-green-500"}`}><span><BiSolidUpArrow /></span> {product.change.pct.toLocaleString("bn-BD")}%</p>
+            <p className={`flex items-center gap-0.5 bg-base-300 px-2 py-1 rounded-xl ${product.change.dir === "up" ? "text-red-500" : "text-green-500"}`}>{product.change.dir === "up" ? <BiSolidUpArrow /> : <BiSolidDownArrow />}<span></span> {product.change.pct.toLocaleString("bn-BD")}%</p>
         </div>
       </div>
-    </div>
+    </Link >
   );
 };
 

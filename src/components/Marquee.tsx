@@ -1,4 +1,5 @@
 import getAllProducts from "@/lib/productData";
+import Link from "next/link";
 import { BiSolidDownArrow, BiSolidUpArrow } from "react-icons/bi"
 import MarqueeText from "react-marquee-text"
 
@@ -14,7 +15,7 @@ const Marquee = async () => {
             <div className=" flex gap-6">
                 {
                     allProducts.map(product => 
-                        <div className="flex items-center gap-1"
+                        <Link href={`/product/${product.id}`} className="flex items-center gap-1 hover:underline"
                         key={product.id}>
                             <span>{product.categoryIcon}</span>
                             <p>{product.nameBn}</p>
@@ -25,7 +26,7 @@ const Marquee = async () => {
                              : 
                                 <span className="flex items-center text-green-500"><BiSolidDownArrow /> {product.change.pct.toLocaleString("bn-BD")}%</span>
                             }</span>
-                        </div>
+                        </Link>
                     )
                 }
             </div>
