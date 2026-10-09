@@ -1,6 +1,55 @@
+'use client';
+
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { Bounce, toast } from "react-toastify";
 
 const SignUpPage = () => {
+
+  const onSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const user = Object.fromEntries(formData.entries()) as {name: string, email: string, password: string};
+
+    const {data, error} = await authClient.signUp.email({
+      ...user,
+      callbackURL: "/"
+    })
+
+    if (data) {
+      toast.success("আপনার অ্যাকাউন্টটি সফলভাবে তৈরি করা হয়েছে!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+
+      redirect("/");
+    }
+
+    if (error) {
+      toast.error(`${error?.message}!`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+    }
+    
+  }
+
   return (
     <div className="min-h-screen bg-base-300 px-4 py-8 sm:py-12">
       <div className="mx-auto flex w-full max-w-md flex-col items-center">
@@ -18,7 +67,7 @@ const SignUpPage = () => {
         {/* Sign Up Card */}
         <div className="w-full rounded-2xl border border-gray-300 bg-base-100 p-4 shadow-sm sm:p-6">
           {/* Form */}
-          <form className="space-y-4">
+          <form onSubmit={onSubmit} className="space-y-4">
             <fieldset className="space-y-4">
               {/* Name */}
               <div className="space-y-1.5">
@@ -72,27 +121,6 @@ const SignUpPage = () => {
                 />
               </div>
 
-              {/* Confirm Password */}
-              <div className="space-y-1.5">
-                <label
-                  htmlFor="confirmPassword"
-                  className="text-sm font-medium"
-                >
-                  পাসওয়ার্ড নিশ্চিত করুন
-                </label>
-
-                <input
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type="password"
-                  autoComplete="new-password"
-                  minLength={8}
-                  placeholder="আবার লিখুন"
-                  className="input input-bordered w-full"
-                  required
-                />
-              </div>
-
               {/* Submit Button */}
               <button
                 type="submit"
@@ -107,9 +135,7 @@ const SignUpPage = () => {
           <div className="my-5 flex items-center gap-3">
             <div className="h-px flex-1 bg-gray-300"></div>
 
-            <span className="shrink-0 text-sm text-gray-500">
-              অথবা
-            </span>
+            <span className="shrink-0 text-sm text-gray-500">অথবা</span>
 
             <div className="h-px flex-1 bg-gray-300"></div>
           </div>
@@ -184,9 +210,11 @@ const SignUpPage = () => {
             </a>
           </p>
         </div>
-      <Link href={"/"}>
-        <p className="py-4 text-gray-700 cursor-pointer hover:text-green-400">← হোম পেজে ফিরে যান</p>
-      </Link>
+        <Link href={"/"}>
+          <p className="py-4 text-gray-700 cursor-pointer hover:text-green-400">
+            ← হোম পেজে ফিরে যান
+          </p>
+        </Link>
       </div>
     </div>
   );

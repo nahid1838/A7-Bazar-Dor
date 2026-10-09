@@ -1,14 +1,59 @@
+"use client";
+
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
+import { Bounce, toast } from "react-toastify";
 
 const SignInPage = () => {
+  const onSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const user = Object.fromEntries(formData.entries()) as {
+      email: string;
+      password: string;
+    };
+
+    const { data, error } = await authClient.signIn.email({
+      ...user,
+      callbackURL: "/",
+    });
+
+    if (data) {
+      toast.success("সফলভাবে সাইন ইন হয়েছে!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+    }
+
+    if (error) {
+      toast.error(`${error?.message}!`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-base-300 px-4 py-8 sm:py-12">
       <div className="mx-auto flex w-full max-w-md flex-col items-center">
         {/* Header */}
         <div className="mb-6 space-y-2 text-center">
-          <h3 className="text-2xl font-bold sm:text-3xl">
-            সাইন ইন
-          </h3>
+          <h3 className="text-2xl font-bold sm:text-3xl">সাইন ইন</h3>
 
           <p className="text-sm text-gray-600 sm:text-base">
             বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে অ্যাকাউন্টে ঢুকুন।
@@ -18,9 +63,8 @@ const SignInPage = () => {
         {/* Sign Up Card */}
         <div className="w-full rounded-2xl border border-gray-300 bg-base-100 p-4 shadow-sm sm:p-6">
           {/* Form */}
-          <form className="space-y-4">
+          <form onSubmit={onSubmit} className="space-y-4">
             <fieldset className="space-y-4">
-
               {/* Email */}
               <div className="space-y-1.5">
                 <label htmlFor="email" className="text-sm font-medium">
@@ -70,9 +114,7 @@ const SignInPage = () => {
           <div className="my-5 flex items-center gap-3">
             <div className="h-px flex-1 bg-gray-300"></div>
 
-            <span className="shrink-0 text-sm text-gray-500">
-              অথবা
-            </span>
+            <span className="shrink-0 text-sm text-gray-500">অথবা</span>
 
             <div className="h-px flex-1 bg-gray-300"></div>
           </div>
@@ -143,13 +185,15 @@ const SignInPage = () => {
               href="/signUp"
               className="font-semibold text-green-700 hover:underline"
             >
-            সাইন আপ করুন
+              সাইন আপ করুন
             </a>
           </p>
         </div>
-      <Link href={"/"}>
-        <p className="py-4 text-gray-700 cursor-pointer hover:text-green-400">← হোম পেজে ফিরে যান</p>
-      </Link>
+        <Link href={"/"}>
+          <p className="py-4 text-gray-700 cursor-pointer hover:text-green-400">
+            ← হোম পেজে ফিরে যান
+          </p>
+        </Link>
       </div>
     </div>
   );
