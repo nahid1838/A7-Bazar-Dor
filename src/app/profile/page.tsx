@@ -25,7 +25,9 @@ const ProfilePage = () => {
     });
   };
 
-  const handleUpdateProfile = async (e: React.SubmitEvent<HTMLElement>) => {
+  const handleUpdateProfile = async (
+    e: React.SubmitEvent<HTMLElement>
+  ) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
@@ -51,35 +53,35 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className=" bg-base-300">
-      <div className="container mx-auto max-w-150 space-y-5 py-15">
+    <div className="bg-base-300">
+      <div className="container mx-auto w-full max-w-[600px] space-y-5 px-4 py-8 sm:px-6 sm:py-10 md:py-15">
         <div>
           <p className="text-2xl font-bold">আমার প্রোফাইল</p>
-          <p className="text-gray-700 font-semibold">
+          <p className="font-semibold text-gray-700">
             আপনার অ্যাকাউন্টের তথ্য এখানে দেখুন।
           </p>
         </div>
 
-        <div className="flex justify-between items-center bg-base-100 p-5 rounded-xl">
-          <div className="flex gap-5 items-center">
-            <span className="flex h-13 w-13 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-emerald-700 text-xl font-bold text-white shadow-sm">
+        <div className="flex flex-col items-start justify-between gap-4 rounded-xl bg-base-100 p-4 sm:flex-row sm:items-center sm:p-5">
+          <div className="flex min-w-0 w-full items-center gap-3 sm:gap-5">
+            <span className="flex h-13 w-13 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-emerald-700 text-xl font-bold text-white shadow-sm">
               {user?.name?.trim()?.charAt(0)?.toUpperCase() || "U"}
             </span>
 
-            <div>
-              <h3 className=" text-xl truncate font-extrabold text-gray-800">
+            <div className="min-w-0 flex-1">
+              <h3 className="truncate text-xl font-extrabold text-gray-800">
                 {user?.name}
               </h3>
 
-              <p className="text-gray-500">{user?.email}</p>
+              <p className="break-all text-gray-500">
+                {user?.email}
+              </p>
             </div>
           </div>
 
           <div
             onClick={handleSignOut}
-            className="flex cursor-pointer items-center gap-3 border border-red-600 w-fit rounded-lg px-3 py-2 text-sm font-medium text-red-600 transition-colors hover:bg-red-50"
-          >
-            {" "}
+            className="flex w-fit shrink-0 self-center items-center gap-3 rounded-lg border border-none bg-pink-500 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-red-50 sm:self-start sm:border-solid sm:border-red-600 sm:bg-base-100 sm:text-red-600">
             <span>
               <PiArrowBendDownLeftBold />
             </span>
@@ -88,23 +90,24 @@ const ProfilePage = () => {
         </div>
 
         <form
-          className="flex items-center justify-center bg-base-100 rounded-xl"
+          className="flex w-full items-center justify-center rounded-xl bg-base-100"
           onSubmit={handleUpdateProfile}
         >
-          <fieldset className=" flex flex-col gap-2 rounded-box w-lg p-4">
+          <fieldset className="flex w-full flex-col gap-2 rounded-box p-4 sm:p-5">
             <p className="text-lg font-semibold">তথ্য</p>
 
             <label className="label text-gray-800">নাম</label>
+
             <input
               name="name"
-              type="name"
-              className="input w-s md:w-lg"
+              type="text"
+              className="input w-full"
               placeholder="Name"
             />
 
             <button
               type="submit"
-              className="btn w-fit mx-auto md:mx-0 bg-green-700 text-white mt-4 md:w-lg"
+              className="btn mx-auto mt-4 w-fit bg-green-700 text-white sm:mx-0 sm:w-full"
             >
               আপডেট
             </button>
@@ -112,7 +115,7 @@ const ProfilePage = () => {
         </form>
 
         <Link href={"/"}>
-          <p className="py-4 text-gray-700 cursor-pointer text-center hover:text-green-400">
+          <p className="cursor-pointer py-4 text-center text-gray-700 hover:text-green-400">
             ← হোম পেজে ফিরে যান
           </p>
         </Link>

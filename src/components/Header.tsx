@@ -1,7 +1,7 @@
-import Image from "next/image";
 import NavLinks from "./NavLinks";
 import Link from "next/link";
 import UserInfo from "./UserInfo";
+import { TiShoppingCart } from "react-icons/ti";
 
 const Header = () => {
   const date = new Date().toLocaleString("bn-BD", {
@@ -12,8 +12,8 @@ const Header = () => {
     <header>
       <div className="container mx-auto flex flex-col sm:flex-row gap-5 sm:gap-0 justify-between items-center py-4">
         <div className="flex gap-3">
-          <Link href={"/"} className="bg-green-600 p-2 rounded-xl">
-            <Image src={"/logo-icon.png"} alt="Logo" width={35} height={35} />
+          <Link href={"/"} className="bg-green-600 p-3 rounded-xl">
+            <span className="text-4xl text-base-100"><TiShoppingCart /></span>
           </Link>
 
           <div>

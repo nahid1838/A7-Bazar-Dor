@@ -15,7 +15,7 @@ const PriceDicreaseToday = async () => {
                 <h3 className='flex items-center gap-1 text-xl sm:text-2xl md:text-3xl font-semibold'><span className='text-green-500'><BiSolidDownArrow /></span>আজ দাম কমেছে</h3>
             </div>
 
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5'>
+            <div className='grid grid-cols-1 mx-3 sm:mx-0 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5'>
                 {
                     sortedPriceIncreseProducts.slice(0, 6).map(product => 
                     <ProductCard key={product.id} product={product}></ProductCard> )
