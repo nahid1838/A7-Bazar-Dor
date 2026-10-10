@@ -1,10 +1,11 @@
+
 import { IProduct } from "@/lib/productData";
 import { BiSolidDownArrow, BiSolidUpArrow } from "react-icons/bi";
 
 const ProductDetailsPage = async ({
   params,
 }: {
-  params: { productId: string };
+  params: Promise<{ productId: string }>;
 }) => {
   const { productId } = await params;
 
@@ -17,28 +18,30 @@ const ProductDetailsPage = async ({
   const maxPrice = Math.max(...product.markets.map((market) => market.max));
 
   const unitInBangla: Record<string, string> = {
-  kg: "কেজি",
-  litre: "লিটার",
-  dozen: "ডজন",
-  piece: "টি",
+    kg: "কেজি",
+    litre: "লিটার",
+    dozen: "ডজন",
+    piece: "টি",
   };
 
   return (
     <div className="bg-base-300">
-      <div className="container mx-auto space-y-8 pt-8 pb-15">
-        <div className="flex justify-between items-center px-3 py-4 rounded-2xl bg-base-100">
-          <div className="flex gap-5 items-center">
-            <span className="text-5xl bg-base-300 p-4 rounded-xl">
+      <div className="container mx-auto w-full space-y-8 px-3 pt-8 pb-15 sm:px-5 lg:px-6">
+        <div className="flex flex-col justify-between gap-4 rounded-2xl bg-base-100 px-3 py-4 sm:px-4 md:flex-row md:items-center">
+          <div className="flex min-w-0 items-center gap-3 sm:gap-5">
+            <span className="shrink-0 rounded-xl bg-base-300 p-3 text-4xl sm:p-4 sm:text-5xl">
               {product.categoryIcon}
             </span>
 
-            <div>
-              <p className="text-3xl font-bold">{product.nameBn}</p>
-              <p className="text-gray-600">
+            <div className="min-w-0">
+              <p className="break-words text-2xl font-bold sm:text-3xl">
+                {product.nameBn}
+              </p>
+              <p className="text-sm text-gray-600 sm:text-base">
                 প্রতি {unitInBangla[product.unit] || product.unit} - {product.nameBn}
               </p>
 
-              <p>
+              <p className="mt-1 text-sm sm:text-base">
                 {product.change.dir === "up" ? (
                   <>
                     গতকালের তুলনায় আজ দাম বেড়েছে .{" "}
@@ -53,12 +56,19 @@ const ProductDetailsPage = async ({
               </p>
             </div>
           </div>
-          <div className="text-center bg-base-300 px-4 py-2 rounded-xl">
+
+          <div className="w-full rounded-xl bg-base-300 px-4 py-2 text-center sm:mx-auto sm:w-fit md:mx-0">
             <p>আজকের দাম</p>
-            <p className="text-3xl font-bold">{product.today.toLocaleString("bn-BD")}</p>
+            <p className="text-3xl font-bold">
+              {product.today.toLocaleString("bn-BD")}
+            </p>
             <p>টাকা / {unitInBangla[product.unit] || product.unit}</p>
             <p
-              className={`flex items-center gap-0.5 px-2 py-1 rounded-xl ${product.change.dir === "up" ? "text-red-500" : "text-green-500"}`}
+              className={`flex items-center justify-center gap-0.5 rounded-xl px-2 py-1 ${
+                product.change.dir === "up"
+                  ? "text-red-500"
+                  : "text-green-500"
+              }`}
             >
               {product.change.dir === "up" ? (
                 <BiSolidUpArrow />
@@ -70,30 +80,42 @@ const ProductDetailsPage = async ({
           </div>
         </div>
 
-        <div className=" px-4 py-6 bg-base-100 rounded-2xl">
+        <div className="rounded-2xl bg-base-100 px-3 py-6 sm:px-4 md:px-6">
           <div>
-              <h3 className="mb-3 mt-6 text-xl font-semibold">দামের সারসংক্ষেপ</h3>
-            <div className="grid grid-cols-3 justify-between gap-5">
-              <div className="border border-gray-300 px-5 py-4 rounded-2xl">
+            <h3 className="mb-3 mt-6 text-xl font-semibold">
+              দামের সারসংক্ষেপ
+            </h3>
+
+            <div className="grid grid-cols-1 justify-between gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+              <div className="rounded-2xl border border-gray-300 px-4 py-4 sm:px-5">
                 <p>সর্বনিম্ন দাম</p>
-                <p className="flex gap-1 items-end text-green-500">
-                  <span className="text-3xl font-bold">{minPrice.toLocaleString("bn-BD")}</span>টাকা
+                <p className="flex flex-wrap items-end gap-1 text-green-500">
+                  <span className="text-3xl font-bold">
+                    {minPrice.toLocaleString("bn-BD")}
+                  </span>
+                  টাকা
                 </p>
                 <p>সবচেয়ে কম দামের বাজার</p>
               </div>
 
-              <div className="border border-gray-300 px-5 py-4 rounded-2xl">
+              <div className="rounded-2xl border border-gray-300 px-4 py-4 sm:px-5">
                 <p>সর্বাধিক দাম</p>
-                <p className="flex gap-1 items-end text-red-500">
-                  <span className="text-3xl font-bold">{maxPrice.toLocaleString("bn-BD")}</span>টাকা
+                <p className="flex flex-wrap items-end gap-1 text-red-500">
+                  <span className="text-3xl font-bold">
+                    {maxPrice.toLocaleString("bn-BD")}
+                  </span>
+                  টাকা
                 </p>
                 <p>সবচেয়ে বেশি দামের বাজার</p>
               </div>
 
-              <div className="border border-gray-300 px-5 py-4 rounded-2xl">
+              <div className="rounded-2xl border border-gray-300 px-4 py-4 sm:col-span-2 sm:px-5 lg:col-span-1">
                 <p>গড় দাম</p>
-                <p className="flex gap-1 items-end text-green-500">
-                  <span className="text-3xl font-bold">{((product.today + product.yesterday)/ 2).toLocaleString("bn-BD")}</span>টাকা
+                <p className="flex flex-wrap items-end gap-1 text-green-500">
+                  <span className="text-3xl font-bold">
+                    {((product.today + product.yesterday) / 2).toLocaleString("bn-BD")}
+                  </span>
+                  টাকা
                 </p>
                 <p>প্রতি {unitInBangla[product.unit] || product.unit}-এর হিসাবে</p>
               </div>
@@ -105,36 +127,38 @@ const ProductDetailsPage = async ({
               বাজারভিত্তিক আজকের দাম
             </h3>
 
-            <div className=" rounded-xl border border-gray-300">
-              <div className="grid min-w-[600px] grid-cols-5 gap-3 border-b border-gray-300 px-4 py-3 font-semibold text-gray-600">
-                <p>বাজার</p>
-                <p>বিভাগ</p>
-                <p>সর্বনিম্ন</p>
-                <p>সর্বোচ্চ</p>
-                <p className="text-right">গড়</p>
-              </div>
-
-              {product.markets.map((market, index) => (
-                <div
-                  key={`${market.market}-${index}`}
-                  className={`grid min-w-[600px] grid-cols-5 gap-3 px-4 py-3 ${
-                    index % 2 === 0 ? "bg-base-100" : "bg-base-300"
-                  } ${
-                    index !== product.markets.length - 1
-                      ? "border-b border-gray-500"
-                      : ""
-                  }`}
-                >
-                  <p className="font-semibold">{market.market}</p>
-                  <p>{market.division}</p>
-                  <p>{market.min.toLocaleString("bn-BD")} টাকা</p>
-                  <p>{market.max.toLocaleString("bn-BD")} টাকা</p>
-                  <p className="text-right font-semibold">
-                    {((market.max + market.min) / 2).toLocaleString("bn-BD")}{" "}
-                    টাকা
-                  </p>
+            <div className="overflow-x-auto rounded-xl border border-gray-300">
+              <div className="min-w-[600px]">
+                <div className="grid grid-cols-5 gap-3 border-b border-gray-300 px-4 py-3 font-semibold text-gray-600">
+                  <p>বাজার</p>
+                  <p>বিভাগ</p>
+                  <p>সর্বনিম্ন</p>
+                  <p>সর্বোচ্চ</p>
+                  <p className="text-right">গড়</p>
                 </div>
-              ))}
+
+                {product.markets.map((market, index) => (
+                  <div
+                    key={`${market.market}-${index}`}
+                    className={`grid grid-cols-5 gap-3 px-4 py-3 ${
+                      index % 2 === 0 ? "bg-base-100" : "bg-base-300"
+                    } ${
+                      index !== product.markets.length - 1
+                        ? "border-b border-gray-500"
+                        : ""
+                    }`}
+                  >
+                    <p className="font-semibold">{market.market}</p>
+                    <p>{market.division}</p>
+                    <p>{market.min.toLocaleString("bn-BD")} টাকা</p>
+                    <p>{market.max.toLocaleString("bn-BD")} টাকা</p>
+                    <p className="text-right font-semibold">
+                      {((market.max + market.min) / 2).toLocaleString("bn-BD")}{" "}
+                      টাকা
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

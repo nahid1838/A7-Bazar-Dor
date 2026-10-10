@@ -6,8 +6,8 @@ import { TiShoppingCart } from "react-icons/ti";
 const Footer = () => {
     return (
         <div className="pt-5">
-            <div className="container mx-auto flex items-center justify-between py-5">
-                <div className="space-y-3">
+            <div className="container mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between gap-5 md:gap-0 py-5">
+                <div className=" flex flex-col items-center md:items-start space-y-3">
                     <Link href={"/"} className="flex gap-2 items-center">
                         <span className="text-4xl p-1.5 text-gray-200 bg-green-600  rounded-xl"><TiShoppingCart /></span>
                         <p className="text-2xl font-extrabold">বাজার দর</p>

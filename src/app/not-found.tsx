@@ -29,7 +29,7 @@ const NotFound = () => {
         <div className="flex flex-col justify-center gap-3 sm:flex-row">
           <Link
             href="/"
-            className="btn btn-primary gap-2 rounded-xl"
+            className="btn bg-green-600 text-white gap-2 rounded-xl"
           >
             <FaArrowLeft />
             হোম পেজে ফিরে যান

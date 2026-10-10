@@ -10,7 +10,7 @@ const Header = () => {
 
   return (
     <header>
-      <div className="container mx-auto flex justify-between items-center py-4">
+      <div className="container mx-auto flex flex-col sm:flex-row gap-5 sm:gap-0 justify-between items-center py-4">
         <div className="flex gap-3">
           <Link href={"/"} className="bg-green-600 p-2 rounded-xl">
             <Image src={"/logo-icon.png"} alt="Logo" width={35} height={35} />

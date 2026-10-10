@@ -32,7 +32,7 @@ const CategorieProductsPage = async ({
         <div className="flex gap-3 items-center bg-base-100 px-5 py-3 rounded-xl">
             <span className="text-4xl bg-base-300 p-3  rounded-xl">{categoriProducts[0]?.image}</span>
             <div>
-                <p className="text-3xl font-bold">{categoriProducts[0]?.nameBn}</p>
+                <p className="text-2xl sm:text-3xl font-bold">{categoriProducts[0]?.nameBn}</p>
                 <p>{categoriProducts.length.toLocaleString("bn-BD")}টি পণ্যের আজকের দাম ও পরিবর্তন</p>
             </div>
         </div>

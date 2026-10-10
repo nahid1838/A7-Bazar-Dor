@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -8,11 +7,7 @@ import { IProduct } from "@/lib/productData";
 
 type SortOption = "default" | "low-to-high" | "high-to-low";
 
-const SortableProducts = ({
-  products,
-}: {
-  products: IProduct[];
-}) => {
+const SortableProducts = ({ products }: { products: IProduct[] }) => {
   const [sortBy, setSortBy] = useState<SortOption>("default");
 
   const sortedProducts = [...products];
@@ -38,18 +33,12 @@ const SortableProducts = ({
           <select
             id="sort-products"
             value={sortBy}
-            onChange={(e) =>
-              setSortBy(e.target.value as SortOption)
-            }
+            onChange={(e) => setSortBy(e.target.value as SortOption)}
             className="w-28 cursor-pointer appearance-none rounded-md border border-gray-300 bg-base-100 py-1.5 pl-2 pr-7 text-xs outline-none transition hover:border-green-600 focus:border-green-600 sm:w-36 sm:text-sm"
           >
             <option value="default">ডিফল্ট</option>
-            <option value="low-to-high">
-              দাম: কম থেকে বেশি
-            </option>
-            <option value="high-to-low">
-              দাম: বেশি থেকে কম
-            </option>
+            <option value="low-to-high">দাম: কম থেকে বেশি</option>
+            <option value="high-to-low">দাম: বেশি থেকে কম</option>
           </select>
 
           <BiChevronDown
@@ -60,17 +49,14 @@ const SortableProducts = ({
       </div>
 
       {/* Product Count */}
-      <p className="text-gray-700">
+      <p className="text-gray-700 text-center sm:text-start">
         মোট {products.length.toLocaleString("bn-BD")}টি পণ্য দেখানো হচ্ছে
       </p>
 
       {/* Product Cards */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {sortedProducts.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-          />
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
     </div>
