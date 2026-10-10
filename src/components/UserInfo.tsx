@@ -81,12 +81,12 @@ const UserInfo = () => {
                 </div>
 
                 <div className="space-y-1 p-2">
-                  <div className="flex cursor-pointer items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-gray-700 transition-colors hover:bg-green-50 hover:text-green-700">
+                  <Link href={"/profile"} className="flex cursor-pointer items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-gray-700 transition-colors hover:bg-green-50 hover:text-green-700">
                     <span>
                       <FaUser />
                     </span>
                     আমার প্রোফাইল
-                  </div>
+                  </Link>
 
                   <div
                     onClick={handleSignOut}

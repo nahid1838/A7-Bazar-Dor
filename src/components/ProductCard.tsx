@@ -3,6 +3,14 @@ import Link from "next/link";
 import { BiSolidDownArrow, BiSolidUpArrow } from "react-icons/bi";
 
 const ProductCard = ({ product }: {product: IProduct}) => {
+
+  const unitInBangla: Record<string, string> = {
+  kg: "কেজি",
+  litre: "লিটার",
+  dozen: "ডজন",
+  piece: "টি",
+  };
+
   return (
     <Link href={`/product/${product.id}`} >
       <div className="space-y-3 border border-gray-300 bg-base-100 p-4 rounded-xl">
@@ -10,7 +18,7 @@ const ProductCard = ({ product }: {product: IProduct}) => {
             <span className="text-4xl bg-base-300 p-1 rounded-lg">{product.image}</span>
             <div>
                 <p className="text-xl font-bold">{product.nameBn}</p>
-                <p>প্রতি কেজি</p>
+                <p>প্রতি {unitInBangla[product.unit] || product.unit}</p>
             </div>
         </div>
         <div  className="flex justify-between items-end">

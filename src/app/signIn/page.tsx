@@ -48,6 +48,41 @@ const SignInPage = () => {
     }
   };
 
+  const handleGoogleSignIn = async () => {
+    const googleData = await authClient.signIn.social({
+      provider: "google"
+    });
+    toast.success("Google সাইন ইন সফল হয়েছে!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+  };
+
+  const handleGithubSignIn = async () => {
+    const githubData = await authClient.signIn.social({
+      provider: "github"
+    });
+
+    toast.success("Github সাইন ইন সফল হয়েছে!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+  }
+
   return (
     <div className="min-h-screen bg-base-300 px-4 py-8 sm:py-12">
       <div className="mx-auto flex w-full max-w-md flex-col items-center">
@@ -122,7 +157,7 @@ const SignInPage = () => {
           {/* Google & GitHub Buttons */}
           <div className="flex flex-col gap-3 sm:flex-row">
             {/* Google */}
-            <button
+            <button onClick={handleGoogleSignIn}
               type="button"
               className="btn min-w-0 flex-1 bg-white text-black border-[#e5e5e5] hover:bg-gray-100"
             >
@@ -156,7 +191,7 @@ const SignInPage = () => {
             </button>
 
             {/* GitHub */}
-            <button
+            <button onClick={handleGithubSignIn}
               type="button"
               className="btn min-w-0 flex-1 border-black bg-black text-white hover:bg-gray-800"
             >

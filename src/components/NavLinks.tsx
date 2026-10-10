@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NavLinksClient from "./NavLinksClient";
 
 interface INavLinks {
     id: string;
@@ -19,14 +20,7 @@ const NavLinks = async () => {
 
     return (
         <div className="flex gap-5 border-t border-t-gray-300 border-b border-b-gray-300 py-2">
-            {
-                navLinks.map(navLink => 
-                <Link href={`/category/${navLink.slug}`} className="flex gap-1" key={navLink.id}>
-                    <span>{navLink.icon}</span>
-                    <p>{navLink.nameBn}</p>
-                </Link>
-                )
-            }
+            <NavLinksClient navLinks={navLinks}></NavLinksClient>
         </div>
     );
 };
