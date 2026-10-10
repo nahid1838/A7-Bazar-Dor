@@ -9,8 +9,8 @@ const Header = () => {
   });
 
   return (
-    <header className="container mx-auto">
-      <div className=" flex justify-between items-center py-4">
+    <header>
+      <div className="container mx-auto flex justify-between items-center py-4">
         <div className="flex gap-3">
           <Link href={"/"} className="bg-green-600 p-2 rounded-xl">
             <Image src={"/logo-icon.png"} alt="Logo" width={35} height={35} />

@@ -14,7 +14,7 @@ const Marquee = async () => {
   };
 
   return (
-    <div>
+    <div className="border-y border-gray-300 ">
       <MarqueeText className="py-1.5" direction={"right"} duration={10}>
         <div className=" flex gap-6">
           {allProducts.map((product) => (

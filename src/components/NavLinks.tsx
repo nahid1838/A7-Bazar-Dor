@@ -19,8 +19,10 @@ const NavLinks = async () => {
     const navLinks = await getLinks();
 
     return (
-        <div className="flex gap-5 border-t border-t-gray-300 border-b border-b-gray-300 py-2">
-            <NavLinksClient navLinks={navLinks}></NavLinksClient>
+        <div className="flex gap-5 border-t border-t-gray-300 py-2">
+            <div className="container mx-auto">
+                <NavLinksClient navLinks={navLinks}></NavLinksClient>
+            </div>
         </div>
     );
 };

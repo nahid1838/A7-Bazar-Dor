@@ -1,4 +1,5 @@
 import ProductCard from "@/components/ProductCard";
+import SortableProducts from "@/components/SortableProducts";
 import { IProduct } from "@/lib/productData";
 
 interface IParams {
@@ -27,7 +28,7 @@ const CategorieProductsPage = async ({
 
   return (
     <div className="bg-base-300">
-      <div className="container mx-auto py-10 space-y-3 ">
+      <div className="container mx-auto pt-10 pb-20 space-y-5 ">
         <div className="flex gap-3 items-center bg-base-100 px-5 py-3 rounded-xl">
             <span className="text-4xl bg-base-300 p-3  rounded-xl">{categoriProducts[0]?.image}</span>
             <div>
@@ -35,12 +36,7 @@ const CategorieProductsPage = async ({
                 <p>{categoriProducts.length.toLocaleString("bn-BD")}টি পণ্যের আজকের দাম ও পরিবর্তন</p>
             </div>
         </div>
-        <p>মোট {categoriProducts.length.toLocaleString("bn-BD")}টি পণ্য দেখানো হচ্ছে</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {categoriProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        <SortableProducts products={categoriProducts}></SortableProducts>
       </div>
     </div>
   );
